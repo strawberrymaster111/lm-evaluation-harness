@@ -1,0 +1,76 @@
+
+description: preprocess
+
+target:
+  service: sing
+  # name: msrresrchvc
+  name: msrresrchlab
+  workspace_name: baltic03wspace
+
+environment:
+  image: huggingface/transformers-pytorch-deepspeed-latest-gpu:latest
+  registry: msraairgroup.azurecr.io
+  setup:
+    - pip install --upgrade pip --user
+    - pip install datasets numpy tensorboard jsonlines ujson --user
+    - pip install --upgrade transformers --user
+    - pip install xformers --user
+    - pip install einops>=0.3.0 --user
+    - pip install nltk --user
+    - pip install accelerate --user
+    - pip install peft --user
+    - pip install wandb --user
+    - pip install fire --user
+    - pip install sentencepiece --user
+    - pip install zstandard --user
+    - pip install torchinfo --user
+    - pip install h5py --user
+    - pip install tiktoken pandas polars --user
+    - pip install requests tqdm --user
+    - echo -e "\n[Python Version]"
+    - python --version
+    - echo -e "\n[Used Python Env]"
+    - pip list
+    - echo -e "\n[Used CPU]"
+    - lscpu
+    - echo -e "\n[Used Memory]"
+    - free -h
+    - echo -e "\n[Used Disk]"
+    - df -h
+    - echo -e "\n[Mounted Storage]"
+    - echo -e "\n[Start Running...]"
+
+code:
+  local_dir: $CONFIG_DIR
+  remote_dir: v-hongyihe/preprocess_v2/tokenize-filter/eval-0822
+
+storage:
+  blob1:
+    storage_account_name: xiaoliuinterns
+    container_name: openpai
+    mount_dir: /mnt/openpai
+
+jobs:
+
+- name: eval-0822-1/8
+  # sku: 1x8C30
+  # sku: 1x80G1-A100-NvLink
+  sku: 1xG1-V100-IB
+  sla_tier: Premium
+  priority: High
+  command:
+  - bash eval.sh
+  mpi: False
+  process_count_per_node: 1
+  submit_args:
+    env:
+      {
+        "NCCL_DEBUG": "INFO",
+        "SHARED_MEMORY_PERCENT": 0.5,
+        "_AZUREML_SINGULARITY_JOB_UAI": /subscriptions/d3967d29-68f3-4de2-9a9c-501a4d0a3d57/resourcegroups/azureml/providers/Microsoft.ManagedIdentity/userAssignedIdentities/UAI_baltic03
+      }
+  tags:
+  - Project_Name:AIMicius
+  - ProjectID:PRJ-0419-A47
+  - Experiment:Continual_Pretraining
+  identity: managed

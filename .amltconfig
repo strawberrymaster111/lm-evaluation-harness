@@ -1,0 +1,1 @@
+{"project_name": "eval_hhy", "storage_account_name": "xiaoliuinterns", "container_name": "amulet", "blob_storage_account_name": "xiaoliuinterns", "registry_name": "projects", "local_path": "/home/v-hongyihe/lm-evaluation-harness", "default_output_dir": "/home/v-hongyihe/lm-evaluation-harness/amlt", "project_uuid": "7244135061.11777-198e188f-a36d", "version": "10.15.0"}
