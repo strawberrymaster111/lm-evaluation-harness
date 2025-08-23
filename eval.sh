@@ -31,5 +31,7 @@ do
             --device all \
             --output_path /mnt/${file_name}/ckpt-globalstep${step}/eval_results_full_remote.json \
             --trust_remote_code \
+            
+    done
 
 done
