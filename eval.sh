@@ -22,11 +22,11 @@ filename_list=(
 
 for file_name in "${filename_list[@]}"; 
 do
-    lm_eval --model hf \
+    python -m lm_eval --model hf \
         --model_args "pretrained=/mnt/${file_name}/ckpt-globalstep48000/,tokenizer=/mnt/openpai/hongyi_he/Llama-3-8B-tokenizer" \
         --tasks commonsense_qa,piqa,mmlu \
         --device all \
         --output_path /mnt/${file_name}/ckpt-globalstep48000/eval_results_append.json \
         --trust_remote_code \
-        
+
 done
