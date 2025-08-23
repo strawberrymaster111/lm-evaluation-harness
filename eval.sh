@@ -26,7 +26,7 @@ do
         --model_args "pretrained=/mnt/${file_name}/ckpt-globalstep48000/,tokenizer=/mnt/blob-openpai-xiaoliuinterns-out/hongyi_he/Llama-3-8B-tokenizer" \
         --tasks commonsense_qa,piqa,mmlu \
         --device all \
-        --output_path /mnt/${file_name}/ckpt-globalstep48000/eval_results_append.json \
+        --output_path /mnt/${file_name}/ckpt-globalstep48000/eval_results_append_remote.json \
         --trust_remote_code \
 
 done
