@@ -17,7 +17,7 @@ def find_eval_result_files(directory_path):
         list: 找到的文件路径列表
     """
     # 构建搜索模式
-    search_pattern = os.path.join(directory_path, '*eval_results_full_remote*.json')
+    search_pattern = os.path.join(directory_path, 'eval_results*.json')
     
     # 使用 glob 查找匹配的文件
     matching_files = glob.glob(search_pattern)
@@ -91,10 +91,12 @@ def print_filtered_metrics_table(metrics_data):
     # print("=" * 50)
     # print(f"{'测试集':<18}{'acc/acc_norm':<10}")
     # print("=" * 50)
+    name_list = []
     list = []
     list_std = []
     test_name_list = []
     for test_name, metrics in metrics_data.items():
+        name_list.append(test_name)
         acc = metrics.get('acc', 'N/A')
         acc_norm = metrics.get('acc_norm', 'N/A')
         acc_std = metrics.get('acc_stderr', 'N/A')
@@ -113,7 +115,7 @@ def print_filtered_metrics_table(metrics_data):
             list_std.append(acc_std)
             test_name_list.append(test_name)
 
-    return list, list_std, test_name_list
+    return list, list_std, test_name_list, name_list
 
 def print_structured_output(results_dict):
     """
@@ -130,6 +132,7 @@ def print_structured_output(results_dict):
         for i in range(len(file_data["result"])):
             new_list.append(file_data["result"][i])
             new_list_std.append(file_data["std"][i])
+        print(f"File: {file_name}")
         result_list.append(new_list)
         result_list.append(new_list_std)
     
@@ -212,6 +215,9 @@ if __name__ == "__main__":
     # 替换为你的 JSON 文件路径
     result_dict = {}
 
+
+    
+
     for step in range(1000, 5000, 1000):
         directory_path = f"/home/v-hongyihe/blob/openpai/hongyi_he/emb_pretrain/saved/nem-llama-15b-4096-hhy-score-pc1-3point4-20250811/ckpt-globalstep{step}"
 
@@ -238,7 +244,8 @@ if __name__ == "__main__":
             
             # 打印表格
             # print("过滤后的测试集指标（排除 mmlu 子项）：")
-            list_tmp, list_std, test_name_list = print_filtered_metrics_table(filtered_metrics)
+            list_tmp, list_std, test_name_list, name_list = print_filtered_metrics_table(filtered_metrics)
+            print('Name List:', name_list)
             result_dict[step] = {"result": list_tmp, "std": list_std}
 
             # 显示包含的测试集列表

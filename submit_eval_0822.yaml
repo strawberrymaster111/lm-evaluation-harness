@@ -3,8 +3,8 @@ description: preprocess
 
 target:
   service: sing
-  # name: msrresrchvc
-  name: msrresrchlab
+  name: msrresrchvc
+  # name: msrresrchlab
   workspace_name: baltic03wspace
 
 environment:
@@ -54,12 +54,13 @@ jobs:
 
 - name: eval-0822-1/8
   # sku: 1x8C30
-  # sku: 1x80G1-A100-NvLink
-  sku: 1xG1-V100-IB
+  sku: 1x80G1-A100-NvLink
+  # sku: 1xG1-V100-IB
   sla_tier: Premium
   priority: High
   command:
-  - bash eval.sh
+  - pip install -e .
+  - bash eval_8B.sh
   mpi: False
   process_count_per_node: 1
   submit_args:
