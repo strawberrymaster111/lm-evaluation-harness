@@ -24,7 +24,7 @@ do
     do
         cp llama3_8b_config.json /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/config.json
         lm_eval --model hf \
-            --model_args "pretrained=/mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/,tokenizer=/mnt/blob-openpai-xiaoliuinterns-out/openpai/hongyi_he/Llama-3-8B-tokenizer" \
+            --model_args "pretrained=/mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/,tokenizer=/mnt/blob-openpai-xiaoliuinterns-out/hongyi_he/Llama-3-8B-tokenizer" \
             --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa \
             --device all \
             --output_path /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/eval_results_rebuttal.json \
