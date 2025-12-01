@@ -8,7 +8,7 @@ filename_list=(
     # "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint200B-1115-4node"
     # "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint100B-1115-4node"
     # "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-DSIR-1115-3node"
-    "hongyi_he/emb_pretrain/working/nem-llama-8b-100B-PPL-sample-1115-4node"
+    "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-PPL-sample-1115-4node"
     # "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-PPL-sample-1115-4node"
 )
 
