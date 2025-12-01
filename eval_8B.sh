@@ -1,13 +1,14 @@
 DISABLE_TQDM=True
 
 filename_list=(
-        "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-PCaverage-100Btop-1115-4node"
-            "hongyi_he/emb_pretrain/saved/nem-llama-8b-200B-PCaverage-700Bsample-1115"
-    "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-PCaverage-100Btop-1115-4node"
-    "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-nemotron-hq-1115-4node"
-    "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint200B-1115-4node"
-    "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint100B-1115-4node"
-    "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-DSIR-1115-3node"
+    #     "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-PCaverage-100Btop-1115-4node"
+    #         "hongyi_he/emb_pretrain/saved/nem-llama-8b-200B-PCaverage-700Bsample-1115"
+    # "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-PCaverage-100Btop-1115-4node"
+    # "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-nemotron-hq-1115-4node"
+    # "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint200B-1115-4node"
+    # "hongyi_he/emb_pretrain/saved/nem-llama-8b-400B-joint100B-1115-4node"
+    # "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-DSIR-1115-3node"
+    "hongyi_he/emb_pretrain/working/nem-llama-8b-100B-PPL-sample-1115-4node"
     # "hongyi_he/emb_pretrain/saved/nem-llama-8b-100B-PPL-sample-1115-4node"
 )
 
