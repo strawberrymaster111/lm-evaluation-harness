@@ -17,15 +17,16 @@ filename_list=(
 
 for file_name in "${filename_list[@]}"; 
 do
-    for step in 24000 48000 64000 96000
+    for step in 48000 96000
     do
-        cp config.json /home/v-hongyihe/blob/${file_name}/ckpt-globalstep${step}/
+        cp config.json /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/
         lm_eval --model hf \
-            --model_args "pretrained=/home/v-hongyihe/blob/${file_name}/ckpt-globalstep${step}/,tokenizer=/home/v-hongyihe/blob/openpai/hongyi_he/Llama-3-8B-tokenizer" \
+            --model_args "pretrained=/mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/,tokenizer=/mnt/blob-openpai-xiaoliuinterns-out/openpai/hongyi_he/Llama-3-8B-tokenizer" \
             --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa \
             --device all \
-            --output_path /home/v-hongyihe/blob/${file_name}/ckpt-globalstep${step}/eval_results_rebuttal.json \
+            --output_path /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/eval_results_rebuttal.json \
             --trust_remote_code \
+            --log_samples \
             
     done
 
