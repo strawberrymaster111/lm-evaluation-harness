@@ -21,7 +21,7 @@ do
         cp llama3_400M_config.json /home/pretraining/blob/openpai/${file_name}/ckpt-globalstep${step}/config.json
         lm_eval --model hf \
             --model_args "pretrained=/home/pretraining/blob/openpai/${file_name}/ckpt-globalstep${step}/,tokenizer=/home/pretraining/blob/openpai/hongyi_he/Llama-3-8B-tokenizer" \
-            --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa \
+            --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa,gsm8k,humaneval \
             --device all \
             --output_path /home/pretraining/blob/openpai/${file_name}/ckpt-globalstep${step}/new/eval_results_append.json \
             --trust_remote_code \

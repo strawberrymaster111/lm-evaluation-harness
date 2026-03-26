@@ -22,7 +22,7 @@ do
         cp config.json /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/
         lm_eval --model hf \
             --model_args "pretrained=/mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/,tokenizer=/mnt/blob-openpai-xiaoliuinterns-out/hongyi_he/Llama-3-8B-tokenizer" \
-            --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa \
+            --tasks arc_easy,arc_challenge,hellaswag,sciq,piqa,humaneval,gsm8k \
             --device all \
             --output_path /mnt/blob-openpai-xiaoliuinterns-out/${file_name}/ckpt-globalstep${step}/eval_results_rebuttal.json \
             --trust_remote_code \
