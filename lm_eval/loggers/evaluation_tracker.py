@@ -310,31 +310,30 @@ class EvaluationTracker:
                     f"samples_{task_name}_{self.date_id}.jsonl"
                 )
 
-                for sample in samples:
-                    # we first need to sanitize arguments and resps
-                    # otherwise we won't be able to load the dataset
-                    # using the datasets library
-                    arguments = {}
-                    for i, arg in enumerate(sample["arguments"]):
-                        arguments[f"gen_args_{i}"] = {}
-                        for j, tmp in enumerate(arg):
-                            arguments[f"gen_args_{i}"][f"arg_{j}"] = tmp
+                with open(file_results_samples, "w", encoding="utf-8") as f:
+                    for sample in samples:
+                        # we first need to sanitize arguments and resps
+                        # otherwise we won't be able to load the dataset
+                        # using the datasets library
+                        arguments = {}
+                        for i, arg in enumerate(sample["arguments"]):
+                            arguments[f"gen_args_{i}"] = {}
+                            for j, tmp in enumerate(arg):
+                                arguments[f"gen_args_{i}"][f"arg_{j}"] = tmp
 
-                    sample["resps"] = sanitize_list(sample["resps"])
-                    sample["filtered_resps"] = sanitize_list(sample["filtered_resps"])
-                    sample["arguments"] = arguments
-                    sample["target"] = str(sample["target"])
+                        sample["resps"] = sanitize_list(sample["resps"])
+                        sample["filtered_resps"] = sanitize_list(sample["filtered_resps"])
+                        sample["arguments"] = arguments
+                        sample["target"] = str(sample["target"])
 
-                    sample_dump = (
-                        json.dumps(
-                            sample,
-                            default=handle_non_serializable,
-                            ensure_ascii=False,
+                        sample_dump = (
+                            json.dumps(
+                                sample,
+                                default=handle_non_serializable,
+                                ensure_ascii=False,
+                            )
+                            + "\n"
                         )
-                        + "\n"
-                    )
-
-                    with open(file_results_samples, "a", encoding="utf-8") as f:
                         f.write(sample_dump)
 
                 if self.api and self.push_samples_to_hub:
