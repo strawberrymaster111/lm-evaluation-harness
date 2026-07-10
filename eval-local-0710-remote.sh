@@ -94,7 +94,7 @@ do
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
         --tasks mmlu,lambada_openai,wikitext,truthfulqa_mc1,truthfulqa_mc2,triviaqa \
         --device all \
-        --batch_size auto \s
+        --batch_size auto \
         --output_path "${ckpt_dir}/eval_results_0710.json" \
         --trust_remote_code ; then
         ok_main=0
