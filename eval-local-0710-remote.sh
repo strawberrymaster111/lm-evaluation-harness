@@ -14,10 +14,17 @@ mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 # 空行和以 # 开头的注释行会被自动忽略，行首尾多余空白会被去掉。
 read -r -d '' model_text <<'MODELS'
 nem-llama-15b-4096-average-2point88-700B-0911
+nem-llama-15b-4096-hhy-ppl-100B-20250918
+nem-llama-15b-4096-hhy-ppl-725B-20250918
 nem-llama-15b-4096-hhy-score-DSIR-173B-20250920
+nem-llama-15b-4096-hhy-score-DSIR-173B-20250920we-8node
 nem-llama-15b-4096-hhy-score-all-2point9-20250811
 nem-llama-15b-4096-hhy-score-all-3point18-20250814
+nem-llama-15b-4096-hhy-score-random-data-20250814
 nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250825
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250903-seed32
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250821
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250903-seed32
 nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-20250823
 nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-direct-20250821
 nem-llama-15b-4096-nemotron-HQ-20250902-new
@@ -92,10 +99,10 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks mmlu,lambada_openai,wikitext,truthfulqa_mc1,truthfulqa_mc2,triviaqa \
+        --tasks pile_10k,c4 \
         --device all \
         --batch_size auto \
-        --output_path "${ckpt_dir}/eval_results_0710.json" \
+        --output_path "${ckpt_dir}/eval_results_0711.json" \
         --trust_remote_code ; then
         ok_main=0
         echo "[ERROR] 似然任务组评测失败: ${model_name}"
