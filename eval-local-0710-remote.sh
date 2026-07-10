@@ -99,7 +99,7 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks mmlu,lambada_openai,wikitext,gsm8k,bbh_fewshot,truthfulqa_mc1,truthfulqa_mc2,triviaqa,drop,paloma \
+        --tasks mmlu,lambada_openai,wikitext,gsm8k,bbh_fewshot,truthfulqa_mc1,truthfulqa_mc2,triviaqa,drop \
         --device all \
         --output_path "${ckpt_dir}/eval_results_0710.json" \
         --trust_remote_code ; then
@@ -108,17 +108,17 @@ do
     fi
 
     # ---- 第 2 步：生成式 MMLU（5-shot，贪心，单独输出）----
-    ok_gen=1
-    if ! lm_eval --model hf \
-        --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks mmlu_generative \
-        --num_fewshot 5 \
-        --device all \
-        --output_path "${ckpt_dir}/eval_results_mmlu_gen_0710.json" \
-        --trust_remote_code ; then
-        ok_gen=0
-        echo "[ERROR] mmlu_generative 评测失败: ${model_name}"
-    fi
+    # ok_gen=1
+    # if ! lm_eval --model hf \
+    #     --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
+    #     --tasks mmlu_generative \
+    #     --num_fewshot 5 \
+    #     --device all \
+    #     --output_path "${ckpt_dir}/eval_results_mmlu_gen_0710.json" \
+    #     --trust_remote_code ; then
+    #     ok_gen=0
+    #     echo "[ERROR] mmlu_generative 评测失败: ${model_name}"
+    # fi
 
     # ---- 汇总本模型结果 ----
     if [ "${ok_main}" -eq 1 ] && [ "${ok_gen}" -eq 1 ]; then
