@@ -9,16 +9,17 @@ ckpt="ckpt-globalstep48000"
 # 挂载根目录
 mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 
+# nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250830
+# nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250903
+# nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-20250826
+# nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-direct-20250826
+# nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250821
+# nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250903-seed32
 # ===== 模型目录列表 =====
 # 直接粘贴目录名，每行一个：不需要引号、不需要逗号；
 # 空行和以 # 开头的注释行会被自动忽略，行首尾多余空白会被去掉。
 read -r -d '' model_text <<'MODELS'
-nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250830
-nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250903
-nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-20250826
-nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-direct-20250826
-nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250821
-nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250903-seed32
+nem-llama-15b-domain-format-1125
 MODELS
 
 # 把文本块解析成数组：忽略空行/注释，去掉首尾空白，不需要引号
@@ -80,7 +81,7 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks pile_10k,c4,mmlu,lambada_openai,wikitext \
+        --tasks winogrande \
         --device all \
         --batch_size auto \
         --output_path "${ckpt_dir}/eval_results_0711.json" \
