@@ -99,11 +99,10 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks race,social_iqa \
+        --tasks race,bigbench_social_iqa_multiple_choice \
         --device all \
         --batch_size auto \
-        --output_path "${ckpt_dir}/eval_results_0712.json" \
-        --trust_remote_code ; then
+        --output_path "${ckpt_dir}/eval_results_0712.json" ; then
         ok_main=0
         echo "[ERROR] 似然任务组评测失败: ${model_name}"
     fi
@@ -116,7 +115,6 @@ do
     #     --num_fewshot 5 \
     #     --device all \
     #     --output_path "${ckpt_dir}/eval_results_mmlu_gen_0710.json" \
-    #     --trust_remote_code ; then
     #     ok_gen=0
     #     echo "[ERROR] mmlu_generative 评测失败: ${model_name}"
     # fi
