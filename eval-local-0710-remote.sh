@@ -12,32 +12,32 @@ mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 # ===== 模型目录列表 =====
 # 直接粘贴目录名，每行一个：不需要引号、不需要逗号；
 # 空行和以 # 开头的注释行会被自动忽略，行首尾多余空白会被去掉。
+# nem-llama-15b-4096-average-2point88-700B-0911
+# nem-llama-15b-4096-hhy-ppl-100B-20250918
+# nem-llama-15b-4096-hhy-ppl-725B-20250918
+# nem-llama-15b-4096-hhy-score-DSIR-173B-20250920
+# nem-llama-15b-4096-hhy-score-DSIR-173B-20250920we-8node
+# nem-llama-15b-4096-hhy-score-all-2point9-20250811
+# nem-llama-15b-4096-hhy-score-all-3point18-20250814
+# nem-llama-15b-4096-hhy-score-random-data-20250814
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250825
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250903-seed32
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250821
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250903-seed32
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-20250823
+# nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-direct-20250821
+# nem-llama-15b-4096-nemotron-HQ-20250902-new
+# nem-llama-15b-4096-nemotron-HQ-20250910-seed42-new
+# nem-llama-15b-4096-nemotron-HQ-20250914-seed42-new
+# nem-llama-15b-4096-nemotron-all-20250902-new
+# nem-llama-15b-4096-nemotron-all-20250908-new-seed21
+# nem-llama-15b-top-data-30B-0906-direct
 read -r -d '' model_text <<'MODELS'
-nem-llama-15b-4096-average-2point88-700B-0911
-nem-llama-15b-4096-hhy-ppl-100B-20250918
-nem-llama-15b-4096-hhy-ppl-725B-20250918
-nem-llama-15b-4096-hhy-score-DSIR-173B-20250920
-nem-llama-15b-4096-hhy-score-DSIR-173B-20250920we-8node
-nem-llama-15b-4096-hhy-score-all-2point9-20250811
-nem-llama-15b-4096-hhy-score-all-3point18-20250814
-nem-llama-15b-4096-hhy-score-random-data-20250814
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250825
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250903-seed32
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250821
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250903-seed32
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-20250823
-nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-direct-20250821
-nem-llama-15b-4096-nemotron-HQ-20250902-new
-nem-llama-15b-4096-nemotron-HQ-20250910-seed42-new
-nem-llama-15b-4096-nemotron-HQ-20250914-seed42-new
-nem-llama-15b-4096-nemotron-all-20250902-new
-nem-llama-15b-4096-nemotron-all-20250908-new-seed21
 nem-llama-15b-4096-ori-dimension-direct-1125-4node
 nem-llama-15b-4096-ori-dimension-merge-1125-4node
 nem-llama-15b-4096-semdedup-1125-4node
 nem-llama-15b-domain-format-1125
 nem-llama-15b-domain-topic-1125
-nem-llama-15b-top-data-30B-0906-direct
 MODELS
 
 # 把文本块解析成数组：忽略空行/注释，去掉首尾空白，不需要引号
@@ -99,10 +99,10 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks pile_10k,c4 \
+        --tasks race,social_iqa \
         --device all \
         --batch_size auto \
-        --output_path "${ckpt_dir}/eval_results_0711.json" \
+        --output_path "${ckpt_dir}/eval_results_0712.json" \
         --trust_remote_code ; then
         ok_main=0
         echo "[ERROR] 似然任务组评测失败: ${model_name}"
@@ -122,13 +122,12 @@ do
     # fi
 
     # ---- 汇总本模型结果 ----
-    if [ "${ok_main}" -eq 1 ] && [ "${ok_gen}" -eq 1 ]; then
+    if [ "${ok_main}" -eq 1 ]; then
         echo "[OK] 评测成功: ${model_name}"
         success=$(( success + 1 ))
     else
         detail=""
         [ "${ok_main}" -eq 0 ] && detail="${detail}似然组失败 "
-        [ "${ok_gen}" -eq 0 ] && detail="${detail}mmlu_generative失败 "
         failed_models+=("${model_name} (${detail})")
     fi
 done
