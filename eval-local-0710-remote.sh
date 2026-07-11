@@ -38,7 +38,6 @@ mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 # nem-llama-15b-domain-format-1125
 # nem-llama-15b-domain-topic-1125
 read -r -d '' model_text <<'MODELS'
-
 nem-llama-15b-4096-average-2point88-700B-0911
 nem-llama-15b-4096-hhy-ppl-100B-20250918
 nem-llama-15b-4096-hhy-ppl-725B-20250918
