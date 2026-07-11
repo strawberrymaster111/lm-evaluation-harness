@@ -64,6 +64,11 @@ nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-202508
 nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-direct-20250826
 nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250821
 nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250903-seed32
+nem-llama-15b-4096-ori-dimension-direct-1125-4node
+nem-llama-15b-4096-ori-dimension-merge-1125-4node
+nem-llama-15b-4096-semdedup-1125-4node
+nem-llama-15b-domain-format-1125
+nem-llama-15b-domain-topic-1125
 MODELS
 
 # 把文本块解析成数组：忽略空行/注释，去掉首尾空白，不需要引号
@@ -125,10 +130,10 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks race,bigbench_social_iqa_multiple_choice \
+        --tasks race,winogrande,commonsense_qa \
         --device all \
         --batch_size auto \
-        --output_path "${ckpt_dir}/eval_results_0712.json" ; then
+        --output_path "${ckpt_dir}/eval_results_0713.json" ; then
         ok_main=0
         echo "[ERROR] 似然任务组评测失败: ${model_name}"
     fi
