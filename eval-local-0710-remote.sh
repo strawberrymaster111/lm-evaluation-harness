@@ -32,12 +32,39 @@ mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 # nem-llama-15b-4096-nemotron-all-20250902-new
 # nem-llama-15b-4096-nemotron-all-20250908-new-seed21
 # nem-llama-15b-top-data-30B-0906-direct
+# nem-llama-15b-4096-ori-dimension-direct-1125-4node
+# nem-llama-15b-4096-ori-dimension-merge-1125-4node
+# nem-llama-15b-4096-semdedup-1125-4node
+# nem-llama-15b-domain-format-1125
+# nem-llama-15b-domain-topic-1125
 read -r -d '' model_text <<'MODELS'
-nem-llama-15b-4096-ori-dimension-direct-1125-4node
-nem-llama-15b-4096-ori-dimension-merge-1125-4node
-nem-llama-15b-4096-semdedup-1125-4node
-nem-llama-15b-domain-format-1125
-nem-llama-15b-domain-topic-1125
+
+nem-llama-15b-4096-average-2point88-700B-0911
+nem-llama-15b-4096-hhy-ppl-100B-20250918
+nem-llama-15b-4096-hhy-ppl-725B-20250918
+nem-llama-15b-4096-hhy-score-DSIR-173B-20250920
+nem-llama-15b-4096-hhy-score-DSIR-173B-20250920we-8node
+nem-llama-15b-4096-hhy-score-all-2point9-20250811
+nem-llama-15b-4096-hhy-score-all-3point18-20250814
+nem-llama-15b-4096-hhy-score-random-data-20250814
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250825
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-20250903-seed32
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250821
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point56-3point06-direct-20250903-seed32
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-20250823
+nem-llama-15b-4096-hhy-score-top-data-4point16-4point0-3point58-3point09-direct-20250821
+nem-llama-15b-4096-nemotron-HQ-20250902-new
+nem-llama-15b-4096-nemotron-HQ-20250910-seed42-new
+nem-llama-15b-4096-nemotron-HQ-20250914-seed42-new
+nem-llama-15b-4096-nemotron-all-20250902-new
+nem-llama-15b-4096-nemotron-all-20250908-new-seed21
+nem-llama-15b-top-data-30B-0906-direct
+nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250830
+nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250903
+nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-20250826
+nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-direct-20250826
+nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250821
+nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250903-seed32
 MODELS
 
 # 把文本块解析成数组：忽略空行/注释，去掉首尾空白，不需要引号
