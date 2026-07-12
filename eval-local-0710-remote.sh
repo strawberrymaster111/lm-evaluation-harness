@@ -130,10 +130,10 @@ do
     ok_main=1
     if ! lm_eval --model hf \
         --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
-        --tasks race,winogrande,commonsense_qa \
+        --tasks boolq,copa,logiqa,wikitext,pile_10k,c4,lambada_openai,pile_arxiv,pile_github,pile_pubmed-central,pile_stackexchange,pile_wikipedia,pile_freelaw \
         --device all \
         --batch_size auto \
-        --output_path "${ckpt_dir}/eval_results_0713.json" ; then
+        --output_path "${ckpt_dir}/eval_results_0714.json" ; then
         ok_main=0
         echo "[ERROR] 似然任务组评测失败: ${model_name}"
     fi
