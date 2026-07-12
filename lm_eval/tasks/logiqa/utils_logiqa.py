@@ -1,18 +1,10 @@
-# Copied from Master
+# Adapted for scriptless mirror `lucasmccabe/logiqa`
+# Fields: context (str), query (str), options (list[str]), correct_option (int)
 def doc_to_text(doc) -> str:
-    """
-    Passage: <passage>
-    Question: <question>
-    Choices:
-    A. <choice1>
-    B. <choice2>
-    C. <choice3>
-    D. <choice4>
-    Answer:
-    """
     choices = ["a", "b", "c", "d"]
+    question = doc.get("query", doc.get("question", ""))
     prompt = "Passage: " + doc["context"] + "\n"
-    prompt += "Question: " + doc["question"] + "\nChoices:\n"
+    prompt += "Question: " + question + "\nChoices:\n"
     for choice, option in zip(choices, doc["options"]):
         prompt += f"{choice.upper()}. {option}\n"
     prompt += "Answer:"
@@ -20,5 +12,8 @@ def doc_to_text(doc) -> str:
 
 
 def doc_to_target(doc) -> int:
+    # 新镜像用 correct_option(int)，旧版用 label(a/b/c/d)
+    if "correct_option" in doc:
+        return int(doc["correct_option"])
     choices = ["a", "b", "c", "d"]
     return choices.index(doc["label"].strip())
