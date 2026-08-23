@@ -74,7 +74,7 @@ do
     # ---- 第 1 步：似然任务组（0-shot 默认） ----
     ok_main=1
     if ! lm_eval --model hf \
-        --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer" \
+        --model_args "pretrained=${ckpt_dir}/,tokenizer=${mount_root}/hongyi_he/Llama-3-8B-tokenizer,attn_implementation=eager" \
         --tasks sciq,winogrande,race,openbookqa,arc_easy,arc_challenge,hellaswag,social_iqa,commonsense_qa,piqa \
         --device all \
         --batch_size auto \
