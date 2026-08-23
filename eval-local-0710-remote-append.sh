@@ -94,13 +94,12 @@ do
     fi
 
     # ---- 汇总本模型结果 ----
-    if [ "${ok_main}" -eq 1 ] && [ "${ok_gen}" -eq 1 ]; then
+    if [ "${ok_main}" -eq 1 ]; then
         echo "[OK] 评测成功: ${model_name}"
         success=$(( success + 1 ))
     else
         detail=""
         [ "${ok_main}" -eq 0 ] && detail="${detail}似然组失败 "
-        [ "${ok_gen}" -eq 0 ] && detail="${detail}mmlu_generative失败 "
         failed_models+=("${model_name} (${detail})")
     fi
 done

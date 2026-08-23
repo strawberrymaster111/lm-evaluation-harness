@@ -19,7 +19,12 @@ mount_root="/mnt/blob-openpai-xiaoliuinterns-out"
 # 直接粘贴目录名，每行一个：不需要引号、不需要逗号；
 # 空行和以 # 开头的注释行会被自动忽略，行首尾多余空白会被去掉。
 read -r -d '' model_text <<'MODELS'
-nem-llama-15b-domain-format-1125
+nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250830
+nem-llama-15b-4096-hhy-score-top-data-4point02-3point85-3point35-2point86-direct-20250903
+nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-20250826
+nem-llama-15b-4096-hhy-score-top-data-4point075-4point0-3point62-3point13-direct-20250826
+nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250821
+nem-llama-15b-4096-hhy-score-top-data-4point1-3point95-3point48-3point-direct-20250903-seed32
 MODELS
 
 # 把文本块解析成数组：忽略空行/注释，去掉首尾空白，不需要引号
